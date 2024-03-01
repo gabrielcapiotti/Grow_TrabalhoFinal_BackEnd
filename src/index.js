@@ -13,11 +13,11 @@ let contadorNotasId = 1;
 
 // Rota de criação de conta do usuário
 app.post('/usuarios', async (req, res) => {
-    const { nome, email, senha } = req.body;
+    const {email, senha } = req.body;
 
     // Verificar se todos os campos necessários foram fornecidos
-    if (!nome || !email || !senha) {
-        return res.status(400).json({ message: 'Por favor, forneça nome, email e senha.' });
+    if (!email || !senha) {
+        return res.status(400).json({ message: 'Por favor, forneça email e senha.' });
     }
 
     // Verificar se o email já está em uso
@@ -32,7 +32,6 @@ app.post('/usuarios', async (req, res) => {
     // Criar um novo usuário
     const novoUsuario = {
         id: contadorUsuarioId++,
-        nome,
         email,
         senha: criptografaSenha
     };
